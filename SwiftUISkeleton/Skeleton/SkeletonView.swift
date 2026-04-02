@@ -227,58 +227,60 @@ extension SkeletonStyle {
     struct Card: SkeletonStyleProtocol {
         let itemCount: Int
         
-        public init(itemCount: Int = 3) {
+        public init(itemCount: Int = 2) {
             self.itemCount = itemCount
         }
         
         public func makeBody() -> some View {
-            VStack(spacing: 16) {
-                ForEach(0..<itemCount, id: \.self) { _ in
-                    VStack(alignment: .leading, spacing: 12) {
-                        HStack(spacing: 12) {
-                            Circle()
-                                .fill(Color.gray.opacity(0.3))
-                                .frame(width: 40, height: 40)
+            ScrollView {
+                VStack(spacing: 16) {
+                    ForEach(0..<itemCount, id: \.self) { _ in
+                        VStack(alignment: .leading, spacing: 12) {
+                            HStack(spacing: 12) {
+                                Circle()
+                                    .fill(Color.gray.opacity(0.3))
+                                    .frame(width: 40, height: 40)
+                                
+                                VStack(alignment: .leading, spacing: 4) {
+                                    RoundedRectangle(cornerRadius: 4)
+                                        .fill(Color.gray.opacity(0.3))
+                                        .frame(width: 120, height: 16)
+                                    RoundedRectangle(cornerRadius: 4)
+                                        .fill(Color.gray.opacity(0.3))
+                                        .frame(width: 80, height: 12)
+                                }
+                                Spacer()
+                            }
                             
-                            VStack(alignment: .leading, spacing: 4) {
-                                RoundedRectangle(cornerRadius: 4)
-                                    .fill(Color.gray.opacity(0.3))
-                                    .frame(width: 120, height: 16)
-                                RoundedRectangle(cornerRadius: 4)
-                                    .fill(Color.gray.opacity(0.3))
-                                    .frame(width: 80, height: 12)
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(Color.gray.opacity(0.3))
+                                .frame(height: 180)
+                            
+                            RoundedRectangle(cornerRadius: 4)
+                                .fill(Color.gray.opacity(0.3))
+                                .frame(height: 14)
+                            RoundedRectangle(cornerRadius: 4)
+                                .fill(Color.gray.opacity(0.3))
+                                .frame(height: 14)
+                                .frame(width: 200)
+                            
+                            HStack(spacing: 20) {
+                                ForEach(0..<3, id: \.self) { _ in
+                                    RoundedRectangle(cornerRadius: 4)
+                                        .fill(Color.gray.opacity(0.3))
+                                        .frame(width: 30, height: 20)
+                                }
+                                Spacer()
                             }
-                            Spacer()
                         }
-                        
-                        RoundedRectangle(cornerRadius: 12)
-                            .fill(Color.gray.opacity(0.3))
-                            .frame(height: 180)
-                        
-                        RoundedRectangle(cornerRadius: 4)
-                            .fill(Color.gray.opacity(0.3))
-                            .frame(height: 14)
-                        RoundedRectangle(cornerRadius: 4)
-                            .fill(Color.gray.opacity(0.3))
-                            .frame(height: 14)
-                            .frame(width: 200)
-                        
-                        HStack(spacing: 20) {
-                            ForEach(0..<3, id: \.self) { _ in
-                                RoundedRectangle(cornerRadius: 4)
-                                    .fill(Color.gray.opacity(0.3))
-                                    .frame(width: 30, height: 20)
-                            }
-                            Spacer()
-                        }
+                        .padding()
+                        .background(Color.gray.opacity(0.1))
+                        .cornerRadius(16)
+                        .padding(.horizontal)
                     }
-                    .padding()
-                    .background(Color.gray.opacity(0.1))
-                    .cornerRadius(16)
-                    .padding(.horizontal)
                 }
+                .padding(.top)
             }
-            .padding(.top)
         }
     }
     

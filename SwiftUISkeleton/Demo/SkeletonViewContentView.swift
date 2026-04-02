@@ -65,20 +65,27 @@ struct SkeletonViewContentView: View {
     
     @ViewBuilder
     var skeletonViewForSelectedStyle: some View {
-        switch StyleType.allCases[selectedStyleType] {
-        case .list:
-            SkeletonView(style: SkeletonStyle.List(), animation: selectedAnimation)
-        case .grid:
-            SkeletonView(style: SkeletonStyle.Grid(), animation: selectedAnimation)
-        case .article:
-            SkeletonView(style: SkeletonStyle.Article(), animation: selectedAnimation)
-        case .profile:
-            SkeletonView(style: SkeletonStyle.Profile(), animation: selectedAnimation)
-        case .card:
-            SkeletonView(style: SkeletonStyle.Card(), animation: selectedAnimation)
-        case .chat:
-            SkeletonView(style: SkeletonStyle.Chat(), animation: selectedAnimation)
+        VStack {
+            Group {
+                switch StyleType.allCases[selectedStyleType] {
+                    case .list:
+                        SkeletonView(style: SkeletonStyle.List(), animation: selectedAnimation)
+                    case .grid:
+                        SkeletonView(style: SkeletonStyle.Grid(), animation: selectedAnimation)
+                    case .article:
+                        SkeletonView(style: SkeletonStyle.Article(), animation: selectedAnimation)
+                    case .profile:
+                        SkeletonView(style: SkeletonStyle.Profile(), animation: selectedAnimation)
+                    case .card:
+                        SkeletonView(style: SkeletonStyle.Card(), animation: selectedAnimation)
+                    case .chat:
+                        SkeletonView(style: SkeletonStyle.Chat(), animation: selectedAnimation)
+                }
+            }
+            Spacer()
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        .background(Color.white)
     }
 }
 
